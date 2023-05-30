@@ -25,19 +25,9 @@ if(isset($_POST['envoyer'])){
        }elseif($data['grade'] == 'respo'){
  
           $_SESSION['repo_name'] = $data['nom'];
-          header('location:respo.php');
+          header('location:accueil.php');
  
-       }elseif($data['grade'] == 'agent'){
- 
-        $_SESSION['agent_name'] = $data['nom'];
-        header('location:agent.php');
-
-     }elseif($data['grade'] == 'acc'){
- 
-      $_SESSION['acc_name'] = $data['nom'];
-      header('location:accueil.php');
-
-   }
+       }
       
     }else{
        $error[] = 'incorrect email or password!';

@@ -9,7 +9,7 @@ require("config/commande.php");
 <head>
     <meta charset="UTF-8" />
     <title>Nouveau courrier</title>
-    <link rel="stylesheet"  href="style.css">
+    <link rel="stylesheet"  href="styleaccueil.css">
     <link rel="stylesheet"  href="styleformulaire.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
  </head>
@@ -20,13 +20,13 @@ require("config/commande.php");
             <ul>
 			  
               <li> 
-                 <a href="accueil.php" >
+              <a href="javascript:history.back()">
 		             <img src="home.png" width="42" height="42" class="rounded-circle" >
 		         </a>
               </li>
               
               <li> 
-                 <a href="new.php" >
+                 <a href="profil.php" >
 		             <img src="2.png" width="42" height="42" class="rounded-circle" >
 		         </a>
               </li>

@@ -1,13 +1,35 @@
 <?php
+
+session_start();
+
 require("config/commande.php");
-$prf=afficher();
+
+
+
+if(!isset($_GET['id'])){
+    header("Location: index.php");
+}
+
+if(empty($_GET['id']) OR !is_numeric($_GET['id'])){
+    header("Location: index.php");
+}
+
+if(isset($_GET['id'])){
+    
+    if(!empty($_GET['id']) OR is_numeric($_GET['id']))
+    {
+        $id = $_GET['id'];
+        $prf = afficherUnPro($id);
+    }
+}
+
 
 ?> 
 <!doctype html>
 <html lang="fran">
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet"  href="style.css">
+    <link rel="stylesheet"  href="styleaccueil.css">
     <link rel="stylesheet"  href="styleformulaire.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<title>Profile</title>
@@ -26,7 +48,7 @@ $prf=afficher();
             <ul>
 			  
               <li> 
-                 <a href="accueil.php" >
+              <a href="javascript:history.back()">
 		             <img src="home.png" width="42" height="42" class="rounded-circle" >
 		         </a>
               </li>
@@ -39,26 +61,20 @@ $prf=afficher();
     <div class="formulaire">
         <div class="barre"></div><br>
         <form >
-        <?php foreach($prf as $admin): ?>
-            
-            
-          
-       <div class="page d-flex ">
-    
-        
-      <div class="content w-full">
-        <h1 class="p-relative">Profile</h1>
-        <div class="profile-page m-20">
-          <!-- Start Overview -->
-          <div class="overview bg-white rad-10 d-flex align-center">
+         <?php foreach($prf as $admin): ?>
+           <div class="content w-full">
+             <h1 class="p-relative">Profile</h1>
+             <div class="profile-page m-20">
+             <!-- Start Overview -->
+             <div class="overview bg-white rad-10 d-flex align-center">
             <div class="avatar-box txt-c p-20">
             <img src="<?= $admin->image ?>"  width="150" height="150">
               <h3 class="m-0"><?= $admin->nom ?> <br> <?= $admin->prenom ?></h3>
             </div>
             <div class="info-box w-full txt-c-mobile">
               <!-- Start Information Row -->
-              <div class="box p-20 d-flex align-center">
-                <h4 class="c-grey fs-15 m-0 w-full"><b>Information General </b> </h4>
+              <div class="box p-20  d-flex align-center">
+                <h4 class="fs-15 m-0 w-full"><b>Information General : </b> </h4>
                 <div class="fs-14">
                   <span class="c-grey">Nom</span>
                   <span><?= $admin->nom ?></span>
@@ -77,7 +93,7 @@ $prf=afficher();
               <!-- End Information Row -->
               <!-- Start Information Row -->
               <div class="box p-20 d-flex align-center">
-                <h4 class="c-grey w-full fs-15 m-0"> Information Personal</h4>
+                <h4 class=" w-full fs-15 m-0"> <b>Information Personal :</b></h4>
                 <div class="fs-14">
                   <span class="c-grey">Email:</span>
                   <span><?= $admin->email ?></span>
@@ -91,13 +107,17 @@ $prf=afficher();
                   <span><?= $admin->date ?></span>
                 </div>
                 <div class="fs-14">
+                  <span class="c-grey">Lieu de naissance</span>
+                  <span><?= $admin->lieu ?></span>
+                </div>
+                <div class="fs-14">
                  
                 </div>
               </div>
               <!-- End Information Row -->
               <!-- Start Information Row -->
               <div class="box p-20 d-flex align-center">
-                <h4 class="c-grey w-full fs-15 m-0">Information Professionel</h4>
+                <h4 class=" w-full fs-15 m-0"><b>Information Professionel :</b></h4>
                 <div class="fs-14">
                   <span class="c-grey">Departement</span>
                   <span>DSI</span>
@@ -115,10 +135,13 @@ $prf=afficher();
                 </div>
               </div>
               <!-- End Information Row -->
-              
+            </div> 
             </div>
-          </div>
+          
           <?php endforeach; ?>
+         </form>
+         </div>
+        </body>
 
 
         
@@ -128,12 +151,9 @@ $prf=afficher();
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
       
-  </body>
-</html>
-
+ 
             
-        </form>
-    </div>
+    
  </body>
 </html>
 
